@@ -24,6 +24,10 @@ public class MedicoController {
     public void cadastrar(@RequestBody @Valid DadosCadastroMedico dados) {
         repository.save(new Medico(dados));
 
+    @GetMapping
+    public Page<DadosListagemMedico> listar(@PageableDefault(size =5, sort = {"nome","crm"}) Pageable paginacao) {
+        return repository.findAll(paginacao).map(DadosListagemMedico::new);    
+
 
     }
 }
