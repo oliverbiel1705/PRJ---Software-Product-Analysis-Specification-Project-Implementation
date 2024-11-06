@@ -28,6 +28,12 @@ public class MedicoController {
     public Page<DadosListagemMedico> listar(@PageableDefault(size =5, sort = {"nome","crm"}) Pageable paginacao) {
         return repository.findAll(paginacao).map(DadosListagemMedico::new);    
 
+    @PutMapping
+    Mapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
+        var medico :Medico = repository.getReferenceById(dados.id());
+        medico.(dados);    
 
     }
 }
